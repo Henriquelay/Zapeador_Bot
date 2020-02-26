@@ -1,1 +1,1 @@
-web: python telezap.py
+worker: python telezap.py

@@ -13,17 +13,11 @@ logging.basicConfig(format='%(asctime)s %(message)s',
                     filename='requests.log',
                     level=logging.DEBUG)
 
-@route('/')
-def index():
-    return ''
 
 def main():
     updater.start_polling()
 
     updater.bot.send_message(chat_id=dev_chat_id, text="Liguei caralho💪😎👌", disable_notification=True)
-
-    port = os.environ.get('PORT', 2832)
-    run(host='0.0.0.0', port=int(port))
 
     # Run the bot until Ctrl-C is pressed
     updater.idle()
