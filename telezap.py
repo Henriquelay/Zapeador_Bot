@@ -1,17 +1,14 @@
 #!/usr/bin/env python3.8
 
-import logging, os
-from threading import Thread
-from bottle import route, run
+from logging import basicConfig as log, DEBUG
 
 from bot_config import dev_chat_id, updater
-import bot_handlers
 
 # Enable logging
-logging.basicConfig(format='%(asctime)s %(message)s',
-                    datefmt='%m/%d/%Y %I:%M:%S %p',
-                    filename='requests.log',
-                    level=logging.DEBUG)
+log(format='%(asctime)s %(message)s',
+    datefmt='%m/%d/%Y %I:%M:%S %p',
+    filename='requests.log',
+    level=DEBUG)
 
 
 def main():
