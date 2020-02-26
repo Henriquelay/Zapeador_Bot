@@ -1,12 +1,12 @@
-import logging
+from logging import getLogger, DEBUG
 from functools import wraps
-import telegram
+from telegram import ChatAction
+from sys import path as syspath
 
-import sys
-sys.path.append(sys.path[0] + "/..")
+syspath.append(syspath[0] + "/..")
 
-utilsLogger = logging.getLogger(__name__)
-utilsLogger.setLevel(logging.DEBUG)
+utilsLogger = getLogger(__name__)
+utilsLogger.setLevel(DEBUG)
 
 
 # Decorators to simulate user feedback
@@ -23,19 +23,7 @@ def send_action(action):
     return decorator
 
 
-send_typing_action = send_action(telegram.ChatAction.TYPING)
-send_upload_photo_action = send_action(telegram.ChatAction.UPLOAD_PHOTO)
-send_upload_video_action = send_action(telegram.ChatAction.UPLOAD_VIDEO)
-send_upload_document_action = send_action(telegram.ChatAction.UPLOAD_DOCUMENT)
-
-
-def parse_n_images_input(update, context, text):
-    """Parse input for VPR gifs. Input must exist and be numeric.
-    Returns
-    --------
-    (nImages, nImagesMessage)
-    nImages : int
-        Number of images to be fetched.
-    nImagesMessage : str
-        Message to be sent by the bot.
-    """
+send_typing_action = send_action(ChatAction.TYPING)
+send_upload_photo_action = send_action(ChatAction.UPLOAD_PHOTO)
+send_upload_video_action = send_action(ChatAction.UPLOAD_VIDEO)
+send_upload_document_action = send_action(ChatAction.UPLOAD_DOCUMENT)

@@ -9,7 +9,7 @@ Comandos:
     /zapear      :Zapeia um texto. Útil para usar o bot em grupos
     (caso você só mande o texto será considerado como o /zapear)
 
-Este bot só foi possível graças ao http://vemdezapbe.be/.
+Este bot só é possível graças ao http://vemdezapbe.be/.
 --
 @Henriquelay
 """

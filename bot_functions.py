@@ -14,9 +14,20 @@ functionsLogger.setLevel(DEBUG)
 def zapear_if_private(update, context):
     """Zapirotalha o texto se chat privado"""
 
-    functionsLogger.debug(f"MessageHandler: {update.message.chat} : {update.message.text}")
+    print("\n\nFodase CATCH ALL\n\n")
 
-    if(update.message.chat.type) == 'private':
+    context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.message.message_id, text=update.message.text)
+
+    if update.message.chat.username == None:
+        user = '@' + update.message.chat.first_name
+    else:
+        user = update.message.chat.username
+
+    chat_type = update.message.chat.type
+    
+    functionsLogger.debug(f"Catch all: {chat_type} to {user}")
+
+    if(chat_type) == 'private':
         command_zapear(update, context)
     return
 
@@ -25,19 +36,17 @@ def zapear_if_private(update, context):
 @run_async
 def command_zapear(update, context):
     """Zapironeia o texto mandado por mensagem privada ou comando"""
-    
+
+    print("\n\nFodase CMD_ZAP\n\n")
+
     message = update.message.text.split(' ')
     if message[0][0] == '/':
         response = zapear(message[1:], update)
     else:
         response = zapear(message, update)
 
-    if response == None:
-        functionsLogger.debug(f"⮑ Channel {update.message.chat.username}  [{update.message.chat.id}]:  ({response})")
-        context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.message.message_id, text=bot_messages.noText)
-    else:
+    if response != None:
         context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.message.message_id, text=response)
-        functionsLogger.debug(f"⮑ {update.message.chat.first_name} {update.message.chat.last_name} [{update.message.chat.id}]:  ({response})")
     return
 
 @run_async
@@ -45,7 +54,7 @@ def command_zapear(update, context):
 def command_help(update, context):
     """Send help message to user"""
 
-    functionsLogger.debug(f"{update.message.chat.type} to @{update.message.chat.username}")
+    print("\n\nFodase CMD_HELP\n\n")
 
     context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.message.message_id, text=bot_messages.helpMessage, parse_mode="markdown", disable_web_page_preview=True)
     return
@@ -55,7 +64,7 @@ def command_help(update, context):
 def command_start(update, context):
     """Send the start message to user"""
 
-    functionsLogger.debug(f"{update.message.chat.type} to @{update.message.chat.username}")
+    print("\n\nFodase CMD_START\n\n")
 
     context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.message.message_id, text=bot_messages.welcomeMessage, parse_mode="markdown")
     return
@@ -64,7 +73,7 @@ def command_start(update, context):
 def zapear(msg, update):
     """Zapiroza o texto enviado"""
 
-    functionsLogger.debug(f"{update.message.chat.type} to @{update.message.chat.username}")
+    functionsLogger.debug("Entering zapear")
     
     parsed_args = parse_flags(msg)
     if not parsed_args:
@@ -72,6 +81,8 @@ def zapear(msg, update):
     parsed_dict = vars(parsed_args)
     if not parsed_dict['zap']:
         return
+
+    functionsLogger.debug("Exiting zapear")
     return api_call(**parsed_dict)
 
 
@@ -87,6 +98,9 @@ def parse_flags(msg):
 
     Return the arguments in a list (and on for the remainder of the message, named 'zap')
     '''
+
+    functionsLogger.debug("Initiating flag parse")
+
     parser = ArgumentParser(prog='Zapeador')
     parser.add_argument('-str', nargs=1, required=False, type=int, choices=range(1,6), default=3)
     parser.add_argument('-rate', nargs=1, required=False, type=float, default=0.5)
@@ -97,7 +111,7 @@ def parse_flags(msg):
         argv = parser.parse_args(msg)
     except:
         return
-    # print(vars(argv)['zap'])
+    functionsLogger.debug("Initiating flag parse complete")
     return argv
 
 
@@ -105,6 +119,9 @@ def api_call(str, rate, tweet, mood, zap):
     '''
     Access the API and return the response text
     '''
+
+    functionsLogger.debug("Entering api_call")
+
     dict = {
         'zap':' '.join(zap),    # Contatenates the list of string return in ['zap']
         'mood':mood,
@@ -112,8 +129,15 @@ def api_call(str, rate, tweet, mood, zap):
         'rate':rate,
         'tweet':tweet
         }
-    # print(dict)
-    response = postrequest('http://vemdezapbe.be/api/v1.0/zap', data=dict)
+    apiURL = 'http://vemdezapbe.be/api/v1.0/zap'
+    response = postrequest(apiURL, data=dict)
+
+    if(response == None):
+        functionsLogger.error(f"Could not get response from {apiURL}")
+    else:
+        functionsLogger.debug(f"API respose was: {response}")
+
+    functionsLogger.debug("Exiting api_call")
     return jsonloads(response.content)['zap']
 
 
