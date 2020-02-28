@@ -10,13 +10,9 @@ from utils import bot_utils, bot_messages
 functionsLogger = getLogger(__name__)
 functionsLogger.setLevel(DEBUG)
 
-# @run_async
+@run_async
 def zapear_if_private(update, context):
     """Zapirotalha o texto se chat privado"""
-
-    print("\n\nFodase CATCH ALL\n\n")
-
-    context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.message.message_id, text=update.message.text)
 
     if update.message.chat.username == None:
         user = '@' + update.message.chat.first_name
@@ -31,12 +27,10 @@ def zapear_if_private(update, context):
         command_zapear(update, context)
 
 
-# @run_async
-# @bot_utils.send_typing_action
+@run_async
+@bot_utils.send_typing_action
 def command_zapear(update, context):
     """Zapironeia o texto mandado por mensagem privada ou comando"""
-
-    print("\n\nFodase CMD_ZAP\n\n")
 
     message = update.message.text.split(' ')
     if message[0][0] == '/':
@@ -52,16 +46,12 @@ def command_zapear(update, context):
 def command_help(update, context):
     """Send help message to user"""
 
-    print("\n\nFodase CMD_HELP\n\n")
-
     context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.message.message_id, text=bot_messages.helpMessage, parse_mode="markdown", disable_web_page_preview=True)
 
 # @run_async
 # @bot_utils.send_typing_action
 def command_start(update, context):
     """Send the start message to user"""
-
-    print("\n\nFodase CMD_START\n\n")
 
     context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.message.message_id, text=bot_messages.welcomeMessage, parse_mode="markdown")
 
