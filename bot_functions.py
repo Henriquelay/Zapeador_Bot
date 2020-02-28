@@ -10,7 +10,7 @@ from utils import bot_utils, bot_messages
 functionsLogger = getLogger(__name__)
 functionsLogger.setLevel(DEBUG)
 
-@run_async
+# @run_async
 def zapear_if_private(update, context):
     """Zapirotalha o texto se chat privado"""
 
@@ -29,11 +29,10 @@ def zapear_if_private(update, context):
 
     if(chat_type) == 'private':
         command_zapear(update, context)
-    return
 
 
-@bot_utils.send_typing_action
-@run_async
+# @run_async
+# @bot_utils.send_typing_action
 def command_zapear(update, context):
     """Zapironeia o texto mandado por mensagem privada ou comando"""
 
@@ -47,27 +46,24 @@ def command_zapear(update, context):
 
     if response != None:
         context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.message.message_id, text=response)
-    return
 
-@run_async
-@bot_utils.send_typing_action
+# @run_async
+# @bot_utils.send_typing_action
 def command_help(update, context):
     """Send help message to user"""
 
     print("\n\nFodase CMD_HELP\n\n")
 
     context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.message.message_id, text=bot_messages.helpMessage, parse_mode="markdown", disable_web_page_preview=True)
-    return
 
-
-@bot_utils.send_typing_action
+# @run_async
+# @bot_utils.send_typing_action
 def command_start(update, context):
     """Send the start message to user"""
 
     print("\n\nFodase CMD_START\n\n")
 
     context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.message.message_id, text=bot_messages.welcomeMessage, parse_mode="markdown")
-    return
 
 
 def zapear(msg, update):
@@ -141,7 +137,7 @@ def api_call(str, rate, tweet, mood, zap):
     return jsonloads(response.content)['zap']
 
 
-@run_async
+# @run_async
 def error(update, context):
     """Log errors caused by Updates."""
 

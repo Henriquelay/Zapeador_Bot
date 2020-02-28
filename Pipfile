@@ -8,7 +8,6 @@ verify_ssl = true
 [packages]
 python-telegram-bot = "*"
 pylint = "*"
-python-dotenv = "*"
 requests = "*"
 
 [requires]

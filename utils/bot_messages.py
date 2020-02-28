@@ -1,4 +1,4 @@
-# All(most) of the bot's messages
+# Plain String for all(most) of the bot's messages
 
 welcomeMessage = """🤖 @Zapeador_Bot
 BOT MONSTRÃO 💪😎👌 PRA ZAPEAR ⚡ ESSES TEXTO 📝 FRAQUINHO 👎 AÍ E FICAR CHAD 🍆 ZAPPER 😂 TOP D++ 🔝🔝🔝🔝
@@ -25,9 +25,9 @@ __Se o conteúdo do zap for maior que 280 caracteres o tweet não será feito. T
 
 Exemplo: /zapear -mood angry -str 5 -rate 1 TÁ FELIZ BOLSONARO??
 Resulta: TÁ FELIZ 😄 BOLSONARO?? 🚫🏳️‍🌈🔫🚫🏳️‍🌈
-É um zap nervoso, de força 5 e todos os tokens encontrados serão zapeados, e não será tweetado.
+É um zap nervoso, de força 5 e 100% dos tokens encontrados serão zapeados, e não será tweetado.
 """
 
-noText = "Mande alguma coisa pra eu zapear aí chefe, vem com essa de manda flag sem nada não, demoro?"
+noText = "Mande alguma coisa pra eu zapear aí chefe"
 
 braba = "Lanso a braba 😤 fdp. 🚬🐧🍶"

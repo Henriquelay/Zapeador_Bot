@@ -1,12 +1,5 @@
-from logging import getLogger, DEBUG
 from functools import wraps
 from telegram import ChatAction
-from sys import path as syspath
-
-syspath.append(syspath[0] + "/..")
-
-utilsLogger = getLogger(__name__)
-utilsLogger.setLevel(DEBUG)
 
 
 # Decorators to simulate user feedback

@@ -19,6 +19,5 @@ Run `pipenv install` on the root directory of the project.
 * Use `pipenv shell` to enter your newly-created virtual enviroment, as a shell.  
 * Exit shell however you like to exit it.
 
-Please explain why is what I did wrong when posting issues/PRs.
 
 Não possui nenhum vínculo com a empresa Whatsapp® ou vemdezapbe.be

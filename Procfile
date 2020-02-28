@@ -1,1 +1,1 @@
-worker: python telezap.py
+worker: python zapeador_bot.py
