@@ -7,7 +7,7 @@ Comandos:
     /start       :Inicia seu contato com o bot
     /help,/ajuda :Mostra o texto de ajuda
     /zapear      :Zapeia um texto. Útil para usar o bot em grupos
-    (caso você só mande o texto será considerado como o /zapear)
+    (caso você mande o texto direto pro bot será considerado como o /zapear)
 
 Este bot só é possível graças ao http://vemdezapbe.be/.
 --

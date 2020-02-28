@@ -14,6 +14,8 @@ functionsLogger.setLevel(DEBUG)
 def zapear_if_private(update, context):
     """Zapirotalha o texto se chat privado"""
 
+    functionsLogger.debug("Entering zapear_if_private")
+
     if update.message.chat.username == None:
         user = '@' + update.message.chat.first_name
     else:
@@ -26,11 +28,16 @@ def zapear_if_private(update, context):
     if(chat_type) == 'private':
         command_zapear(update, context)
 
+    functionsLogger.debug("Exiting zapear_if_private")
+
 
 @run_async
 @bot_utils.send_typing_action
 def command_zapear(update, context):
     """Zapironeia o texto mandado por mensagem privada ou comando"""
+
+
+    functionsLogger.debug("Entering zapear")
 
     message = update.message.text.split(' ')
     if message[0][0] == '/':
@@ -39,21 +46,31 @@ def command_zapear(update, context):
         response = zapear(message, update)
 
     if response != None:
-        context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.message.message_id, text=response)
+        context.bot.send_message(chat_id=update.message.chat.id, reply_to_message_id=update.message.message_id, text=response)
+    
+    functionsLogger.debug("Exiting zapear")
 
-# @run_async
-# @bot_utils.send_typing_action
+@run_async
+@bot_utils.send_typing_action
 def command_help(update, context):
     """Send help message to user"""
 
-    context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.message.message_id, text=bot_messages.helpMessage, parse_mode="markdown", disable_web_page_preview=True)
+    functionsLogger.debug("Entering help")
 
-# @run_async
-# @bot_utils.send_typing_action
+    context.bot.send_message(chat_id=update.message.chat.id, reply_to_message_id=update.message.message_id, text=bot_messages.helpMessage, disable_web_page_preview=True)
+
+    functionsLogger.debug("Exiting help")
+
+@run_async
+@bot_utils.send_typing_action
 def command_start(update, context):
     """Send the start message to user"""
 
-    context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.message.message_id, text=bot_messages.welcomeMessage, parse_mode="markdown")
+    functionsLogger.debug("Entering start")
+
+    context.bot.send_message(chat_id=update.message.chat.id, reply_to_message_id=update.message.message_id, text=bot_messages.welcomeMessage)
+
+    functionsLogger.debug("Exiting start")
 
 
 def zapear(msg, update):
