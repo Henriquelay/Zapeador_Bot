@@ -1,6 +1,6 @@
 from logging import getLogger, DEBUG
 from requests import post as postrequest
-from argparse import ArgumentParser, REMAINDER
+from argparse import ArgumentParser
 from json import loads as jsonloads
 
 from telegram.ext.dispatcher import run_async
@@ -108,8 +108,8 @@ def parse_flags(msg):
     parser.add_argument('-str', nargs=1, required=False, type=int, choices=range(1,6), default=3)
     parser.add_argument('-rate', nargs=1, required=False, type=float, default=0.5)
     parser.add_argument('-tweet', nargs=1, required=False, type=bool, default=False)
-    parser.add_argument('-mood', nargs=1, choices=["angry", "happy", "sad", "sassy", "sick"], required=False, default='happy')
-    parser.add_argument('zap', nargs=REMAINDER)
+    parser.add_argument('-mood', nargs=1, required=False, choices=["angry", "happy", "sad", "sassy", "sick"],  default='happy')
+    parser.add_argument('zap', nargs='*')
     try:
         argv = parser.parse_args(msg)
     except:

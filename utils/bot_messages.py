@@ -15,7 +15,7 @@ Comandos:
 @Henriquelay
 """
 
-helpMessage = """Mande o texto para mim que eu vou zapilar ele\. *Se quiser mandar flags, mande antes do texto\.*
+helpMessage = """Mande o texto para mim que eu vou zapilar ele\. 
 
 Flags:
 *\-mood*: Um entre: __angry__, __happy__, __sad__, __sassy__, __sick__\. Humor do zap\. \(Padrão: '`happy`'\)
@@ -24,7 +24,7 @@ Flags:
 *\-tweet* boolean \(`true/false`\): Se o resultado é tweetado pela conta @vemdezapbebe, a conta oficial da API utilizada\. \(Padrão: `false`\)
 _Apenas se o tweet tiver 280 caracteres ou menos\. Não é possível fazer menções\. É possível criar hashtags\._
 
-_Exemplo:_ `/zapear -mood angry -str 5 -rate Baralho Renan vc comprou cerveja? Tá tomando antibiótico`
+_Exemplo:_ `/zapear Baralho Renan vc comprou cerveja? Tá tomando antibiótico -mood angry -str 5 -rate 1`
 _Resulta:_ `Baralho 😞 Renan 😩😤💦😖 vc comprou ☠️ cerveja? 🍺🍺🍻 Tá tomando 🍺🍻🍺 antibiótico 😤😦🙁`
 É um zap _nervoso_, de _força_ 5 e 100% dos _tokens_ encontrados serão zapeados, e não será tweetado\.
 """
