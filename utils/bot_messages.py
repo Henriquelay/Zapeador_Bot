@@ -1,31 +1,31 @@
 # Plain String for all(most) of the bot's messages
 
-welcomeMessage = """🤖 @Zapeador_Bot
+welcomeMessage = """🤖 @Zapeador\_Bot
 BOT MONSTRÃO 💪😎👌 PRA ZAPEAR ⚡ ESSES TEXTO 📝 FRAQUINHO 👎 AÍ E FICAR CHAD 🍆 ZAPPER 😂 TOP D++ 🔝🔝🔝🔝
 
 Comandos:
-    /start       :Inicia seu contato com o bot
-    /help,/ajuda :Mostra o texto de ajuda
-    /zapear      :Zapeia um texto. Útil para usar o bot em grupos
+    `/start       :Inicia seu contato com o bot`
+    `/help,/ajuda :Mostra o texto de ajuda`
+    `/zapear      :Zapeia um texto. Útil para usar o bot em grupos`
     (caso você mande o texto direto pro bot será considerado como o /zapear)
 
-Este bot só é possível graças ao http://vemdezapbe.be/.
+_Este bot só é possível graças ao [vemdezapbebe](http://vemdezapbe.be/)._
 --
 @Henriquelay
 """
 
-helpMessage = """Mande o texto para mim que eu vou zapilar ele. ***Se quiser mandar flags, mande antes do texto.***
-    --
-    Flags:
-    `-mood` = Um entre: angry, happy, sad, sassy, sick: Humor do zap (Padrão: 'happy')
-    `-str` = Um inteiro entre 1 e 5: Número máximo de emojis por API_token. (Padrão: 3)
-    `-rate` = Decimal entre 0 e 1: Taxa de zapeamento. Quão provável é que um API_token seja zapeado, 0 sendo 0% e 1 sendo 100%. Cada API_token é testado individualmente. (Padrão: 0.5)
-    `-tweet` boolean (true/false): Se o zap deve ser enviado ou não para o Twitter pela conta @vemdezapbebe, a conta oficial da API utilizada. (Padrão: false)
-__Se o conteúdo do zap for maior que 280 caracteres o tweet não será feito. Todos os @ são escapados antes de enviar o tweet, portanto não é possível fazer menções usando a API. É possível criar hashtags, e qualquer texto no formato #texto será interpretado como uma hashtag.__
+helpMessage = """Mande o texto para mim que eu vou zapilar ele. *Se quiser mandar flags, mande antes do texto.*
 
-Exemplo: /zapear -mood angry -str 5 -rate 1 TÁ FELIZ BOLSONARO??
-Resulta: TÁ FELIZ 😄 BOLSONARO?? 🚫🏳️‍🌈🔫🚫🏳️‍🌈
-É um zap nervoso, de força 5 e 100% dos tokens encontrados serão zapeados, e não será tweetado.
+Flags:
+`-mood`: Um entre: __angry__, __happy__, __sad__, __sassy__, __sick__. Humor do zap. (Padrão: 'happy')
+`-str`: Número __inteiro__ entre 1 e 5. Número máximo de emojis por token. (Padrão: 3)
+`-rate`: Decimal __entre 0 e 1__. Taxa de zapeamento. Quão provável é que um token seja zapeado, 0 sendo 0% e 1 sendo 100%. _Cada token é testado individualmente._ (Padrão: 0.5)
+`-tweet` boolean (true/false): Se o resultado é tweetado pela conta @vemdezapbebe, a conta oficial da API utilizada. (Padrão: false)
+_Apenas se o tweet tiver 280 caracteres ou menos. Não é possível fazer menções. É possível criar hashtags._
+
+_Exemplo:_ `/zapear -mood angry -str 5 -rate Comprei birita`
+_Resulta:_ `Comprei 😦🙁😦 birita 😦✋🛑💢`
+É um zap _nervoso_, de _força_ 5 e 100% dos _tokens_ encontrados serão zapeados, e não será tweetado.
 """
 
 noText = "Mande alguma coisa pra eu zapear aí chefe"
