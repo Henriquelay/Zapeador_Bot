@@ -23,8 +23,8 @@ Flags:
 `-tweet` boolean (true/false): Se o resultado é tweetado pela conta @vemdezapbebe, a conta oficial da API utilizada. (Padrão: false)
 _Apenas se o tweet tiver 280 caracteres ou menos. Não é possível fazer menções. É possível criar hashtags._
 
-_Exemplo:_ `/zapear -mood angry -str 5 -rate Comprei birita`
-_Resulta:_ `Comprei 😦🙁😦 birita 😦✋🛑💢`
+_Exemplo:_ `/zapear -mood angry -str 5 -rate Caralho Renan vc comprou cerveja? Tá tomando antibiótico`
+_Resulta:_ `Caralho 😞 Renan 😩😤💦😖 vc comprou ☠️ cerveja? 🍺🍺🍻 Tá tomando 🍺🍻🍺 antibiótico 😤😦🙁`
 É um zap _nervoso_, de _força_ 5 e 100% dos _tokens_ encontrados serão zapeados, e não será tweetado.
 """
 
