@@ -68,7 +68,7 @@ def command_start(update, context):
 
     functionsLogger.debug("Entering start")
 
-    context.bot.send_message(chat_id=update.message.chat.id, reply_to_message_id=update.message.message_id, text=bot_messages.welcomeMessage, parse_mode="MarkdownV2")
+    context.bot.send_message(chat_id=update.message.chat.id, reply_to_message_id=update.message.message_id, text=bot_messages.welcomeMessage, parse_mode="MarkdownV2", disable_web_page_preview=True)
 
     functionsLogger.debug("Exiting start")
 

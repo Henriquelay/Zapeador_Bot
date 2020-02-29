@@ -20,7 +20,7 @@ log(format=FORMAT,
 start_handler = CommandHandler('start', bot_functions.command_start)
 help_handler = CommandHandler(('help', 'ajuda'), bot_functions.command_help)
 zapear_handler = CommandHandler('zapear', bot_functions.command_zapear)
-zapear_message_handler = MessageHandler(Filters.all, bot_functions.zapear_if_private)
+zapear_message_handler = MessageHandler(Filters.text, bot_functions.zapear_if_private)
 
 # Add handlers to dispatcher
 dispatcher.add_handler(start_handler)
