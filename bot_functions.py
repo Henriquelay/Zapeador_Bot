@@ -57,7 +57,7 @@ def command_help(update, context):
 
     functionsLogger.debug("Entering help")
 
-    context.bot.send_message(chat_id=update.message.chat.id, reply_to_message_id=update.message.message_id, text=bot_messages.helpMessage, parse_mode="markdown", disable_web_page_preview=True)
+    context.bot.send_message(chat_id=update.message.chat.id, reply_to_message_id=update.message.message_id, text=bot_messages.helpMessage, parse_mode="MarkdownV2", disable_web_page_preview=True)
 
     functionsLogger.debug("Exiting help")
 
@@ -68,7 +68,7 @@ def command_start(update, context):
 
     functionsLogger.debug("Entering start")
 
-    context.bot.send_message(chat_id=update.message.chat.id, reply_to_message_id=update.message.message_id, text=bot_messages.welcomeMessage, parse_mode="markdown")
+    context.bot.send_message(chat_id=update.message.chat.id, reply_to_message_id=update.message.message_id, text=bot_messages.welcomeMessage, parse_mode="MarkdownV2")
 
     functionsLogger.debug("Exiting start")
 
