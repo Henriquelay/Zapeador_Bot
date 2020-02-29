@@ -3,7 +3,11 @@ from requests import post as postrequest
 from argparse import ArgumentParser
 from json import loads as jsonloads
 
+from uuid import uuid4
+from telegram.error import BadRequest
 from telegram.ext.dispatcher import run_async
+from telegram import InlineQueryResultArticle, ParseMode, InputTextMessageContent
+from telegram.utils.helpers import escape_markdown
 
 from utils import bot_utils, bot_messages
 
@@ -17,7 +21,10 @@ def zapear_if_private(update, context):
     functionsLogger.debug("Entering zapear_if_private")
 
     if update.message.chat.username == None:
-        user = '@' + update.message.chat.first_name
+        if update.message.chat.type != 'private':
+            user = update.message.chat.title + "id:" + str(update.message.chat.id)
+        else:
+            user = update.message.chat.first_name
     else:
         user = update.message.chat.username
 
@@ -41,9 +48,9 @@ def command_zapear(update, context):
 
     message = update.message.text.split(' ')
     if message[0][0] == '/':
-        response = zapear(message[1:], update)
+        response = zapear(message[1:])
     else:
-        response = zapear(message, update)
+        response = zapear(message)
 
     if response != None:
         context.bot.send_message(chat_id=update.message.chat.id, reply_to_message_id=update.message.message_id, text=response)
@@ -72,8 +79,27 @@ def command_start(update, context):
 
     functionsLogger.debug("Exiting start")
 
+@run_async
+def inlinequery(update, context):
+    """Handle the inline query."""
+    query = update.inline_query.query
+    if query != '':
+        moods = ["angry", "sassy", "sick", "happy", "sad"]
 
-def zapear(msg, update):
+        results = [InlineQueryResultArticle(
+                    id=uuid4(),
+                    title=mood,
+                    input_message_content=InputTextMessageContent(zapear((query + " -mood " + mood).split(' ')))) for mood in moods]
+
+        update.inline_query.answer(results)
+    else:
+        update.inline_query.answer([])
+
+
+
+###########
+
+def zapear(msg):
     """Zapiroza o texto enviado"""
 
     functionsLogger.debug("Entering zapear")
@@ -82,6 +108,8 @@ def zapear(msg, update):
     if not parsed_args:
         return
     parsed_dict = vars(parsed_args)
+    functionsLogger.debug("Parsed dict:")
+    functionsLogger.debug(parsed_dict)
     if not parsed_dict['zap']:
         return
 
@@ -104,17 +132,21 @@ def parse_flags(msg):
 
     functionsLogger.debug("Initiating flag parse")
 
+
+    functionsLogger.debug("Parsing: \'" + ' '.join(msg) + "\'")
+
     parser = ArgumentParser(prog='Zapeador')
     parser.add_argument('-str', nargs=1, required=False, type=int, choices=range(1,6), default=3)
-    parser.add_argument('-rate', nargs=1, required=False, type=float, default=0.5)
+    parser.add_argument('-rate', nargs=1, required=False, type=float, default=1)
     parser.add_argument('-tweet', nargs=1, required=False, type=bool, default=False)
-    parser.add_argument('-mood', nargs=1, required=False, choices=["angry", "happy", "sad", "sassy", "sick"],  default='happy')
+    parser.add_argument('-mood', nargs=1, required=False, choices=["angry", "happy", "sad", "sassy", "sick"],  default='angry')
     parser.add_argument('zap', nargs='*')
     try:
         argv = parser.parse_args(msg)
     except:
-        return
-    functionsLogger.debug("Initiating flag parse complete")
+        functionsLogger.debug(' '.join(msg) + " caused an exception! Raising...")
+        raise BadRequest(' '.join(msg))
+    functionsLogger.debug("Exiting flag parse")
     return argv
 
 
@@ -138,13 +170,13 @@ def api_call(str, rate, tweet, mood, zap):
     if(response == None):
         functionsLogger.error(f"Could not get response from {apiURL}")
     else:
-        functionsLogger.debug(f"API respose was: {response}")
+        functionsLogger.debug(f"API respose was: {response.content}")
 
     functionsLogger.debug("Exiting api_call")
     return jsonloads(response.content)['zap']
 
 
-# @run_async
+@run_async
 def error(update, context):
     """Log errors caused by Updates."""
 

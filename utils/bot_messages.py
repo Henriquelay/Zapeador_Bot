@@ -18,9 +18,9 @@ Comandos:
 helpMessage = """Mande o texto para mim que eu vou zapilar ele\. 
 
 Flags:
-*\-mood*: Um entre: __angry__, __happy__, __sad__, __sassy__, __sick__\. Humor do zap\. \(Padrão: '`happy`'\)
+*\-mood*: Um entre: __angry__, __happy__, __sad__, __sassy__, __sick__\. Humor do zap\. \(Padrão: '`angry`'\)
 *\-str*: Número __inteiro__ entre `1` e `5`\. Número máximo de emojis por token\. \(Padrão: 3\)
-*\-rate*: Decimal __entre `0` e `1`__\. Taxa de zapeamento\. Quão provável é que um token seja zapeado, 0 sendo 0% e 1 sendo 100%\. _Cada token é testado individualmente\._ \(Padrão: `0\.5`\)
+*\-rate*: Decimal __entre `0` e `1`__\. Taxa de zapeamento\. Quão provável é que um token seja zapeado, 0 sendo 0% e 1 sendo 100%\. _Cada token é testado individualmente\._ \(Padrão: `1`\)
 *\-tweet* boolean \(`true/false`\): Se o resultado é tweetado pela conta @vemdezapbebe, a conta oficial da API utilizada\. \(Padrão: `false`\)
 _Apenas se o tweet tiver 280 caracteres ou menos\. Não é possível fazer menções\. É possível criar hashtags\._
 
