@@ -2,7 +2,7 @@
 
 A [Telegram](https://telegram.org/) bot for zapeadores 😎😎🔝👌
 
-This bot sends a request to [vemdezapbe.be](http://vemdezapbe.be/) to zapear it's text
+This bot sends a request to [vemdezapbe.be](http://vemdezapbe.be/) to zapear your message's it's text
 
 This is my first 'actual' program using Python.  
 Don't expect much.
