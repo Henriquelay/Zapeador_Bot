@@ -1,7 +1,7 @@
 # Plain String for all(most) of the bot's messages
 
 welcomeMessage = """🤖 @Zapeador\_Bot
-BOT MONSTRÃO 💪😎👌 PRA ZAPEAR ⚡ ESSES TEXTO 📝 FRAQUINHO 👎 AÍ E FICAR CHAD 🍆 ZAPPER 😂 TOP D\+\+ 🔝🔝🔝🔝
+BOT MONSTRÃO 💪😎👌 PRA ZAPEAR 💯 ESSAS MSG 💬 FRAQUINHA 👎 AÍ E FICAR 😤 CHAD 🍆 ZAPPER 😂 TOP D\+\+ ☝️🔝🔝💯💯
 
 Comandos:
     `/start       :Inicia seu contato com o bot`
@@ -29,6 +29,10 @@ _Resulta:_ `Baralho 😞 Renan 😩😤💦😖 vc comprou ☠️ cerveja? 🍺�
 É um zap _nervoso_, de _força_ 5 e 100% dos _tokens_ encontrados serão zapeados, e não será tweetado\.
 """
 
-noText = "Mande alguma coisa pra eu zapear aí chefe"
+noText = "😤 Mande imediatamente ⌛ alguma coisa 🤷‍♀️ pra eu zapear 💬 aí chefe ☝️💯 "
 
-braba = "Lanso a braba 😤 fdp. 🚬🐧🍶"
+braba = "💯 Lanso a braba 😤 fdp. 🚬🐧🍶🔝"
+
+emptyMessage = "🧐 Parece 🤔 que sua mensagem 🗨️ está 🕳️ vazia... Porque ☝️ não tenta me mandar 📨 um texto?"
+
+argumentError = "🤔🤔 Hum... Não reconheci 🧐 esse argumento aí pcr... 😤😤"

@@ -1,6 +1,6 @@
 from logging import getLogger, DEBUG
 from requests import post as postrequest
-from argparse import ArgumentParser
+from argparse import ArgumentParser, ArgumentError
 from json import loads as jsonloads
 
 from uuid import uuid4
@@ -20,19 +20,7 @@ def zapear_if_private(update, context):
 
     functionsLogger.debug("Entering zapear_if_private")
 
-    if update.message.chat.username == None:
-        if update.message.chat.type != 'private':
-            user = update.message.chat.title + "id:" + str(update.message.chat.id)
-        else:
-            user = update.message.chat.first_name
-    else:
-        user = update.message.chat.username
-
-    chat_type = update.message.chat.type
-    
-    functionsLogger.debug(f"Catch all: {chat_type} to {user}")
-
-    if(chat_type) == 'private':
+    if(update.message.chat.type) == 'private':
         command_zapear(update, context)
 
     functionsLogger.debug("Exiting zapear_if_private")
@@ -45,14 +33,16 @@ def command_zapear(update, context):
 
 
     functionsLogger.debug("Entering zapear")
+    try:
+        response = zapear(update.message.text)
+    except bot_utils.emptyMessageException:
+        functionsLogger.debug("Exception caught! emptyMessageException")
+        response = bot_messages.emptyMessage
+    except bot_utils.flagWithoutValueException:
+        functionsLogger.debug("Exception caught! flagWithoutValueException")
+        response = bot_messages.argumentError
 
-    message = update.message.text.split(' ')
-    if message[0][0] == '/':
-        response = zapear(message[1:])
-    else:
-        response = zapear(message)
-
-    if response != None:
+    finally:
         context.bot.send_message(chat_id=update.message.chat.id, reply_to_message_id=update.message.message_id, text=response)
     
     functionsLogger.debug("Exiting zapear")
@@ -85,11 +75,16 @@ def inlinequery(update, context):
     query = update.inline_query.query
     if query != '':
         moods = ["angry", "sassy", "sick", "happy", "sad"]
+        moodsEmoji = ["😤", "😏", "🤒", "😁", "😭"]
 
-        results = [InlineQueryResultArticle(
+        results = [
+                    InlineQueryResultArticle(
                     id=uuid4(),
-                    title=mood,
-                    input_message_content=InputTextMessageContent(zapear((query + " -mood " + mood).split(' ')))) for mood in moods]
+                    title=moodsEmoji[moodIndex] + " " + mood.capitalize(),
+                    input_message_content=InputTextMessageContent(
+                        zapear((query + " -mood " + mood))
+                    ))
+                for moodIndex, mood in enumerate(moods)]
 
         update.inline_query.answer(results)
     else:
@@ -103,15 +98,19 @@ def zapear(msg):
     """Zapiroza o texto enviado"""
 
     functionsLogger.debug("Entering zapear")
-    
+
     parsed_args = parse_flags(msg)
+
     if not parsed_args:
-        return
+        print("PARSE RETORNEI PARADA ESTRANHA")
+
     parsed_dict = vars(parsed_args)
     functionsLogger.debug("Parsed dict:")
     functionsLogger.debug(parsed_dict)
+
     if not parsed_dict['zap']:
-        return
+        functionsLogger.debug("'" + msg + "' is empty of actual text. Raising exception...")
+        raise bot_utils.emptyMessageException(msg)
 
     functionsLogger.debug("Exiting zapear")
     return api_call(**parsed_dict)
@@ -132,20 +131,24 @@ def parse_flags(msg):
 
     functionsLogger.debug("Initiating flag parse")
 
+    msg = msg.split(' ') 
 
-    functionsLogger.debug("Parsing: \'" + ' '.join(msg) + "\'")
+    if(msg[0][0] == '/'):
+        msg = msg[1:]
 
-    parser = ArgumentParser(prog='Zapeador')
+
+    functionsLogger.debug("Parsing: '" + ' '.join(msg) + "'")
+
+    parser = bot_utils.ThrowingArgumentParser(prog='Zapeador')
+
     parser.add_argument('-str', nargs=1, required=False, type=int, choices=range(1,6), default=3)
     parser.add_argument('-rate', nargs=1, required=False, type=float, default=1)
     parser.add_argument('-tweet', nargs=1, required=False, type=bool, default=False)
     parser.add_argument('-mood', nargs=1, required=False, choices=["angry", "happy", "sad", "sassy", "sick"],  default='angry')
     parser.add_argument('zap', nargs='*')
-    try:
-        argv = parser.parse_args(msg)
-    except:
-        functionsLogger.debug(' '.join(msg) + " caused an exception! Raising...")
-        raise BadRequest(' '.join(msg))
+
+    argv = parser.parse_args(msg)
+
     functionsLogger.debug("Exiting flag parse")
     return argv
 
