@@ -36,3 +36,5 @@ braba = "💯 Lanso a braba 😤 fdp. 🚬🐧🍶🔝"
 emptyMessage = "🧐 Parece 🤔 que sua mensagem 🗨️ está 🕳️ vazia... Porque ☝️ não tenta me mandar 📨 um texto?"
 
 argumentError = "🤔🤔 Hum... Não reconheci 🧐 esse argumento aí pcr... 😤😤"
+
+messageSizeError = "😤 A mensagem 📨 seria muito ☝️ grande 💯... Tente encurtar 👌👌 ela ou diminuir a 'str' 💪😎 do zapeamento. ☝️🔝🔝 /help para ajuda."

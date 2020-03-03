@@ -6,7 +6,7 @@ from json import loads as jsonloads
 from uuid import uuid4
 from telegram.error import BadRequest
 from telegram.ext.dispatcher import run_async
-from telegram import InlineQueryResultArticle, ParseMode, InputTextMessageContent
+from telegram import InlineQueryResultArticle, ParseMode, InputTextMessageContent, constants
 from telegram.utils.helpers import escape_markdown
 
 from utils import bot_utils, bot_messages
@@ -43,6 +43,8 @@ def command_zapear(update, context):
         response = bot_messages.argumentError
 
     finally:
+        if response.__len__() > constants.MAX_MESSAGE_LENGTH:
+            response = bot_messages.messageSizeError
         context.bot.send_message(chat_id=update.message.chat.id, reply_to_message_id=update.message.message_id, text=response)
     
     functionsLogger.debug("Exiting zapear")
