@@ -169,7 +169,7 @@ def api_call(str, rate, tweet, mood, zap):
         'rate':rate,
         'tweet':tweet
         }
-    apiURL = 'http://vemdezapbe.be/api/v1.0/zap'
+    apiURL = 'http://vemdezap.herokuapp.com/api/v1.0/zap'
     response = postrequest(apiURL, data=dict)
 
     if(response == None):
