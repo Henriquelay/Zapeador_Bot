@@ -34,7 +34,12 @@ def command_zapear(update, context):
 
     functionsLogger.debug("Entering zapear")
     try:
-        response = zapear(update.message.text)
+        tozapear = update.message.text
+        if(update.message.reply_to_message != None):
+            tozapear = update.message.text + ' ' +  update.message.reply_to_message.text
+
+        print('##ZAPEAND0 = ' + tozapear)
+        response = zapear(tozapear)
     except bot_utils.emptyMessageException:
         functionsLogger.debug("Exception caught! emptyMessageException")
         response = bot_messages.emptyMessage
