@@ -38,3 +38,22 @@ emptyMessage = "🧐 Parece 🤔 que sua mensagem 🗨️ está 🕳️ vazia...
 argumentError = "🤔🤔 Hum... Não reconheci 🧐 esse argumento aí pcr... 😤😤"
 
 messageSizeError = "😤 A mensagem 📨 seria muito ☝️ grande 💯... Tente encurtar 👌👌 ela ou diminuir a 'str' 💪😎 do zapeamento. ☝️🔝🔝 /help para ajuda."
+
+vtfcopypasta = """
+Descrição para surdos\-cegos:
+No topo do vídeo há a seguinte legenda:
+```
+vai te fuder governo!
+Não recebi os 600 conto
+```
+ao som de My Boo:
+_t night I think of you
+I want to be your lady, baby
+If your game is on, give me a call Boo
+If your love is strong, gonna give my all to you
+At night I think of you
+I want to be your lady, baby
+If your game is on, give me a call Boo
+If your love is strong, gonna g_
+Bob\-Esponja mandando a dança foda que o Fortnite copiará quando for tarde demais\. O Bob\-Esponja tem uma sombra magnificente e seu modelo é calculado pela nova tecnologia de renderização dobrastracing\. O resto infelizmente só poderá ser experienciado por meio de todas as faculdades sensoriais completamente funcionais\.
+"""

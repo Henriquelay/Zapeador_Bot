@@ -50,7 +50,7 @@ def command_zapear(update, context):
     finally:
         if response.__len__() > constants.MAX_MESSAGE_LENGTH:
             response = bot_messages.messageSizeError
-        context.bot.send_message(chat_id=update.message.chat.id, reply_to_message_id=update.message.message_id, text=response)
+        context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.message.message_id, text=response)
     
     functionsLogger.debug("Exiting zapear")
 
@@ -61,7 +61,7 @@ def command_help(update, context):
 
     functionsLogger.debug("Entering help")
 
-    context.bot.send_message(chat_id=update.message.chat.id, reply_to_message_id=update.message.message_id, text=bot_messages.helpMessage, parse_mode="MarkdownV2", disable_web_page_preview=True)
+    context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.message.message_id, text=bot_messages.helpMessage, parse_mode="MarkdownV2", disable_web_page_preview=True)
 
     functionsLogger.debug("Exiting help")
 
@@ -72,9 +72,24 @@ def command_start(update, context):
 
     functionsLogger.debug("Entering start")
 
-    context.bot.send_message(chat_id=update.message.chat.id, reply_to_message_id=update.message.message_id, text=bot_messages.welcomeMessage, parse_mode="MarkdownV2", disable_web_page_preview=True)
+    context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.message.message_id, text=bot_messages.welcomeMessage, parse_mode="MarkdownV2", disable_web_page_preview=True)
 
     functionsLogger.debug("Exiting start")
+
+
+@run_async
+@bot_utils.send_upload_video_action
+def vtfgoverno(update, context):
+    """Não recebi os 600 conto!"""
+
+    functionsLogger.debug("Entering VTF")
+
+    video_id = 'BAACAgEAAxkBAAIENF6edVYUByEJmvS8SvRYnEj3l_P9AALxAAMow6FExxJd0-vdyS4YBA'
+    context.bot.send_video(chat_id=update.effective_chat.id, reply_to_message_id=update.message.message_id, video=video_id)
+    context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.message.message_id, text=bot_messages.vtfcopypasta, parse_mode="MarkdownV2")
+
+    functionsLogger.debug("Exiting VTF")
+
 
 @run_async
 def inlinequery(update, context):
