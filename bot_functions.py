@@ -91,7 +91,6 @@ def vtfgoverno(update, context):
     functionsLogger.debug("Exiting VTF")
 
 @run_async
-@bot_utils.send_typing_action
 def barra(update, context):
     """Avisa quando os usuários do grupo esqueceram do /"""
 
