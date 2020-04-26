@@ -90,6 +90,19 @@ def vtfgoverno(update, context):
 
     functionsLogger.debug("Exiting VTF")
 
+@run_async
+@bot_utils.send_upload_video_action
+def barra(update, context):
+    """Avisa quando os usuários do grupo esqueceram do /"""
+
+    functionsLogger.debug("Entering barra")
+
+    lower = update.message.text.lower()
+    if lower == 'brazil' or lower == 'usa' :
+        context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.message.message_id, text=bot_messages.vtfcopypasta, parse_mode="MarkdownV2")
+
+    functionsLogger.debug("Exiting barra")
+
 
 @run_async
 def inlinequery(update, context):
