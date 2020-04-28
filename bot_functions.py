@@ -96,11 +96,7 @@ def barra(update, context):
 
     functionsLogger.debug("Entering barra")
 
-    lower = update.message.text.lower()
-    if lower == 'brazil' or lower == 'usa' :
-        context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.message.message_id, text=bot_messages.vtfcopypasta, parse_mode="MarkdownV2")
-    else:
-        zapear_if_private(update, context)
+    context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.message.message_id, text=bot_messages.vtfcopypasta, parse_mode="MarkdownV2")
 
     functionsLogger.debug("Exiting barra")
 
