@@ -57,7 +57,3 @@ If your game is on, give me a call Boo
 If your love is strong, gonna g_
 Bob\-Esponja mandando a dança foda que o Fortnite copiará quando for tarde demais\. O Bob\-Esponja tem uma sombra magnificente e seu modelo é calculado pela nova tecnologia de renderização dobrastracing\. O resto infelizmente só poderá ser experienciado por meio de todas as faculdades sensoriais completamente funcionais\.
 """
-
-vtfcopypasta = """
-Deixastes cair isso meu consagrado: `/`
-"""
