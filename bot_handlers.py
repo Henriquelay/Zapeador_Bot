@@ -10,7 +10,7 @@ help_handler = CommandHandler(('help', 'ajuda'), bot_functions.command_help)
 zapear_handler = CommandHandler('zapear', bot_functions.command_zapear)
 vtfgoverno_handler = CommandHandler(('vtfgoverno', '600conto'), bot_functions.vtfgoverno)
 
-barra_handler = MessageHandler(('usa', 'Usa', 'brazil', 'Brazil'), bot_functions.barra)
+barra_handler = MessageHandler(Filters.text, bot_functions.barra)
 zapear_message_handler = MessageHandler(Filters.text, bot_functions.zapear_if_private)
 
 zapear_inline_handler = InlineQueryHandler(bot_functions.inlinequery)
@@ -21,11 +21,9 @@ dispatcher.add_handler(help_handler)
 dispatcher.add_handler(zapear_handler)
 dispatcher.add_handler(zapear_inline_handler)
 dispatcher.add_handler(vtfgoverno_handler)
-dispatcher.add_handler(barra_handler)
 
 dispatcher.add_error_handler(bot_functions.error)
 
-
-
-dispatcher.add_handler(zapear_message_handler)   # Last
+dispatcher.add_handler(zapear_message_handler)
+dispatcher.add_handler(barra_handler)
 
