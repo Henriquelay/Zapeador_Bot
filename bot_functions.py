@@ -84,11 +84,22 @@ def vtfgoverno(update, context):
 
     functionsLogger.debug("Entering VTF")
 
-    video_id = 'BAACAgEAAxkBAAIENF6edVYUByEJmvS8SvRYnEj3l_P9AALxAAMow6FExxJd0-vdyS4YBA'
-    context.bot.send_video(chat_id=update.effective_chat.id, reply_to_message_id=update.message.message_id, video=video_id)
-    context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.message.message_id, text=bot_messages.vtfcopypasta, parse_mode="MarkdownV2")
+    from_chat_id = 516462777
+    message_id = 1163
+    context.bot.forward_message(update.effective_chat.id, from_chat_id, message_id)
 
     functionsLogger.debug("Exiting VTF")
+
+@bot_utils.send_typing_action
+def vtfgovernotext(update, context):
+    """Não recebi os 600 conto!"""
+
+    functionsLogger.debug("Entering VTFtext")
+
+    vtfgoverno(update, context)
+    context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.message.message_id, text=bot_messages.vtfcopypasta, parse_mode="MarkdownV2")
+
+    functionsLogger.debug("Exiting VTFtext")
 
 
 

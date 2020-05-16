@@ -4,10 +4,10 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pylint = "*"
 
 [packages]
 python-telegram-bot = "*"
-pylint = "*"
 requests = "*"
 
 [requires]

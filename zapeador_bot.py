@@ -3,7 +3,7 @@
 from sys import stdout
 from logging import basicConfig as log, DEBUG
 
-from bot_config import dev_chat_id, updater
+from bot_config import updater
 import bot_functions
 import bot_handlers
 
@@ -17,7 +17,6 @@ log(format=FORMAT,
 
 
 def main():
-    updater.bot.send_message(chat_id=dev_chat_id, text="Liguei caralho💪😎👌", disable_notification=True)
     updater.start_polling()
     updater.idle()
 
