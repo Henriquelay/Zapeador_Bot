@@ -1,1 +1,1 @@
-worker: python zapeador_bot.py
+web: python zapeador_bot.py
