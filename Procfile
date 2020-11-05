@@ -1,1 +1,1 @@
-worker: python zapeador_bot.py
+worker: python zapeador_bot.py $PORT
